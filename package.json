@@ -32,20 +32,20 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.18.0",
-    "@types/chrome": "^0.0.300",
-    "@types/react": "^19.0.0",
+    "@eslint/js": "^10.0.1",
+    "@types/chrome": "^0.1.42",
+    "@types/react": "^19.2.15",
     "@types/react-dom": "^19.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.20.0",
-    "@typescript-eslint/parser": "^8.20.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
     "@wxt-dev/module-react": "^1.2.2",
-    "eslint": "^9.18.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint": "^10.4.0",
+    "eslint-config-prettier": "^10.1.8",
     "git-cliff": "^2.13.1",
     "prettier": "^3.4.2",
     "sharp": "^0.34.5",
-    "typescript": "^5.7.3",
-    "wxt": "^0.20.25"
+    "typescript": "^6.0.3",
+    "wxt": "^0.20.26"
   },
   "packageManager": "pnpm@10.33.2",
   "engines": {
