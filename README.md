@@ -51,15 +51,28 @@ Early development. Not yet published to any extension store.
 
 ### Routing rules
 
-- Watches `chrome.webNavigation.onCreatedNavigationTarget` so it
-  catches every new tab created from a link click (left / middle /
-  Cmd/Ctrl+click) or `window.open`.
+- Catches every new tab opened in the same window as a tab group --
+  links clicked inside the group (`webNavigation.onCreatedNavigationTarget`)
+  *and* tabs that appear in the window from elsewhere, such as
+  bookmarks, the address bar, or external apps handing a URL to the
+  browser (`tabs.onCreated` + `webNavigation.onCommitted`).
+- Tabs sitting inside an unrelated tab group are never disturbed,
+  so other groups in the same window keep their normal behaviour.
+- Each rule has a **scope** that picks which of those tabs to act on:
+  - **In the group** -- the source tab is inside the rule's group.
+  - **As an orphan** -- the source tab is in the same window but is
+    not part of any group.
+  - **In the group or as an orphan** -- both of the above.
+- Each rule has an optional **Rewrite URL** template that runs
+  *before* the action.  If the rewritten URL targets a custom scheme
+  (e.g. `hammerspoon://`) it is handed off to the OS handler and the
+  tab is closed; if it stays an in-browser URL the tab navigates to
+  it and the action below then operates on the new URL.
 - Per-rule action chosen from:
-  1. **Default** -- do nothing.
-  2. **Rewrite URL** -- rewrite the URL via a template and update the
-     tab. The rewritten URL is intended to be a custom scheme handled
-     by an external tool (Hammerspoon, Choosy, Finicky, ...) which
-     then opens the original URL wherever it belongs.
+  1. **Default** -- do nothing more (useful when the URL rewrite alone
+     is the whole point of the rule).
+  2. **Dismiss** -- close the tab immediately.  Focus returns to the
+     source tab when one is known.
   3. **Move to the same group's tail** -- keep the tab in the source
      group but push it to the end.
   4. **Move to the window's tail** -- eject the tab from the group and
@@ -70,7 +83,9 @@ Early development. Not yet published to any extension store.
      (current window first, then others), or create one in the current
      window.
 - Rules are matched by tab group title and an optional URL regex
-  (case-insensitive).
+  (case-insensitive).  Navigations to the browser's own settings
+  pages (`chrome://`, `edge://`, `about:`) and extension pages
+  (`chrome-extension://`, `moz-extension://`) are always skipped.
 
 ### Saved groups
 
@@ -92,7 +107,9 @@ as a fallback) and can be exported and imported as JSON.
 
 ### Open settings from the toolbar
 
-Clicking the extension's toolbar icon opens the options page.
+Clicking the extension's toolbar icon opens TabSquad's options UI
+as a popup.  The same page is also reachable as the regular
+"Extension options" entry in the browser's extension manager.
 
 ## Permissions
 
@@ -123,7 +140,7 @@ WXT generates the manifest and bundles entrypoints. See
 
 ## URL handler recipes
 
-When using the **Rewrite URL** action, you'll typically point the
+When using the **Rewrite URL** step, you'll typically point the
 template at a custom scheme handled outside the browser. Examples:
 
 ### Hammerspoon (macOS)
