@@ -8,6 +8,13 @@ version bumps for fixes; once `1.0.0` ships we will revisit and likely
 adopt strict [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [0.4.0] - 2026-05-28
+
+### Added
+
+- Show the options UI as a toolbar popup
+- Add a "Dismiss" action that closes the routed tab
+
 ## [0.3.1] - 2026-05-15
 
 ### Fixed
