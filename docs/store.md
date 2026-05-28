@@ -33,12 +33,18 @@ Routing rules
 
 For each tab group title, choose what happens when a new tab is
 opened from a link click, middle click, Cmd/Ctrl+click, window.open,
-or even from an external app handing a URL to your browser:
+or even from an external app handing a URL to your browser.
+
+A rule optionally rewrites the URL through a template first.  When
+the rewritten URL is a custom scheme (e.g. hammerspoon://) it is
+handed off to the OS handler and the tab is closed; when it stays
+an in-browser URL the tab navigates to it and then the action
+below applies to the new URL.
+
+Then choose an action:
 
 - Do nothing (the browser default).
-- Rewrite the URL via a template and update the tab.  Useful for
-  handing the link off to an external scheme handler (Hammerspoon,
-  Choosy, Finicky, ...) that opens it in a different browser.
+- Dismiss the tab (close it immediately).
 - Move the tab to the same group's tail.
 - Move the tab to the current window's tail, outside the group.
 - Move the tab to a different normal window (creates one if there
@@ -79,7 +85,9 @@ browser's extension storage.
 
 Configuration
 
-Click the toolbar icon to open the options page.  Routing rules and
+Click the toolbar icon to open TabSquad's options UI as a popup.
+The same page is also reachable as the regular "Extension options"
+entry in the browser's extension manager.  Routing rules and
 saved groups can be exported and imported as JSON.
 
 ## Single purpose
