@@ -26,14 +26,30 @@
   }
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   background: var(--bg);
   color: var(--fg);
+  /* When the same page is shown as the toolbar popup, body dimensions
+     drive the popup window size.  Stay a notch below Chrome's 800px
+     popup ceiling so the vertical scrollbar that appears when the
+     content exceeds 600px does not push the content into a horizontal
+     scrollbar as well. */
+  width: 780px;
+  max-height: 600px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .app {
+  width: 100%;
   max-width: 880px;
   margin: 0 auto;
   padding: 24px 24px 64px;

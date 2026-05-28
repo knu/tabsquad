@@ -272,10 +272,6 @@ export default defineBackground(() => {
     handoffRestoreTargets.delete(tabId);
   });
 
-  chrome.action.onClicked.addListener(() => {
-    void chrome.runtime.openOptionsPage();
-  });
-
   chrome.runtime.onInstalled.addListener(() => {
     void refreshSettings();
   });

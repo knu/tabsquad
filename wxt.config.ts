@@ -13,6 +13,7 @@ export default defineConfig({
         16: 'icon/16.png',
         32: 'icon/32.png',
       },
+      default_popup: 'options.html',
     },
   },
 });
