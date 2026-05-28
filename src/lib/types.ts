@@ -1,4 +1,10 @@
-export type ActionKind = 'default' | 'groupTail' | 'windowTail' | 'nextWindowTail' | 'targetGroup';
+export type ActionKind =
+  | 'default'
+  | 'dismiss'
+  | 'groupTail'
+  | 'windowTail'
+  | 'nextWindowTail'
+  | 'targetGroup';
 
 export interface BaseAction {
   kind: ActionKind;
@@ -6,6 +12,10 @@ export interface BaseAction {
 
 export interface DefaultAction extends BaseAction {
   kind: 'default';
+}
+
+export interface DismissAction extends BaseAction {
+  kind: 'dismiss';
 }
 
 export interface GroupTailAction extends BaseAction {
@@ -27,6 +37,7 @@ export interface TargetGroupAction extends BaseAction {
 
 export type Action =
   | DefaultAction
+  | DismissAction
   | GroupTailAction
   | WindowTailAction
   | NextWindowTailAction
@@ -87,6 +98,7 @@ export const DEFAULT_SETTINGS: Settings = {
 
 export const ACTION_LABELS: Record<ActionKind, string> = {
   default: 'Default (do nothing)',
+  dismiss: 'Dismiss (close immediately)',
   groupTail: "Move to the same group's tail",
   windowTail: 'Move to the window tail',
   nextWindowTail: 'Move to the next window tail',

@@ -25,6 +25,7 @@ interface Props {
 
 const ACTION_ORDER: ActionKind[] = [
   'default',
+  'dismiss',
   'groupTail',
   'windowTail',
   'nextWindowTail',
@@ -216,6 +217,8 @@ function defaultActionFor(kind: ActionKind, prev: Action): Action {
   switch (kind) {
     case 'default':
       return { kind: 'default' };
+    case 'dismiss':
+      return { kind: 'dismiss' };
     case 'groupTail':
       return { kind: 'groupTail' };
     case 'windowTail':

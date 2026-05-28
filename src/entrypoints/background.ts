@@ -172,16 +172,17 @@ export default defineBackground(() => {
     const ctx = {
       tabId: details.tabId,
       url: details.url,
-      sourceTabId: details.tabId,
+      // Treat the opener (the tab the user was on) as the source so
+      // dismiss/handoff can restore focus there.  Fall back to the
+      // orphan tab itself when there is no opener.
+      sourceTabId: tab.openerTabId ?? details.tabId,
       sourceWindowId: tab.windowId,
       sourceGroupId: TAB_GROUP_ID_NONE,
       ruleGroupId: matched.ruleGroup?.id ?? TAB_GROUP_ID_NONE,
     };
     const transformed = await applyUrlTransform(matched.rule, ctx);
     if (transformed.consumed) {
-      if (tab.openerTabId != null) {
-        handoffRestoreTargets.set(details.tabId, tab.openerTabId);
-      }
+      handoffRestoreTargets.set(details.tabId, ctx.sourceTabId);
       return;
     }
     await dispatch(matched.rule, { ...ctx, url: transformed.url });

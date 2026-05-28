@@ -55,6 +55,9 @@ export async function dispatch(rule: Rule, ctx: DispatchContext): Promise<void> 
     switch (action.kind) {
       case 'default':
         return;
+      case 'dismiss':
+        await runDismiss(ctx);
+        return;
       case 'groupTail':
         await runGroupTail(ctx);
         return;
@@ -74,6 +77,24 @@ export async function dispatch(rule: Rule, ctx: DispatchContext): Promise<void> 
     }
   } catch (err) {
     console.warn('[TabSquad] action failed; leaving tab in default state', err);
+  }
+}
+
+async function runDismiss(ctx: DispatchContext): Promise<void> {
+  // Restore focus to the source tab before removing the dismissed tab
+  // so the browser's "focus the neighbor on close" behavior doesn't
+  // jump to whichever tab happens to be next to it.
+  if (ctx.sourceTabId !== ctx.tabId) {
+    try {
+      await chrome.tabs.update(ctx.sourceTabId, { active: true });
+    } catch {
+      // source tab may be gone — ignore
+    }
+  }
+  try {
+    await chrome.tabs.remove(ctx.tabId);
+  } catch {
+    // already gone — ignore
   }
 }
 
