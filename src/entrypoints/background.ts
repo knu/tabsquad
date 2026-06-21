@@ -133,10 +133,10 @@ export default defineBackground(() => {
   ): Promise<void> => {
     if (details.frameId !== 0) return;
     if (isExcludedUrl(details.url)) return;
-    // auto_toplevel covers new-tab pages, session restore, and other
-    // navigations the user did not actively request, none of which
-    // should be re-routed.
-    if (details.transitionType === 'auto_toplevel') return;
+    // start_page (webNavigation's name for the history API's auto_toplevel)
+    // covers new-tab pages, session restore, and other navigations the user
+    // did not actively request, none of which should be re-routed.
+    if (details.transitionType === 'start_page') return;
     if (wasRecentlyDispatched(details.tabId)) return;
     if (!consumeOrphan(details.tabId)) return;
 
