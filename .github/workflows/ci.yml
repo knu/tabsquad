@@ -72,3 +72,18 @@ jobs:
         env:
           BROWSER: ${{ matrix.browser }}
         run: pnpm wxt build -b "$BROWSER"
+
+  test-gate:
+    name: Test
+    if: always()
+    needs: [check, build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check results
+        env:
+          CHECK_RESULT: ${{ needs.check.result }}
+          BUILD_RESULT: ${{ needs.build.result }}
+        run: |
+          set -euo pipefail
+          test "$CHECK_RESULT" = success
+          test "$BUILD_RESULT" = success
