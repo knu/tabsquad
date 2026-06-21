@@ -1,6 +1,6 @@
 // Chromium tab group colors mapped to CSS values that roughly match the
 // browser UI.  The exact palette differs by browser; these are eyeballed.
-const GROUP_COLOR_CSS: Record<chrome.tabGroups.ColorEnum, string> = {
+const GROUP_COLOR_CSS: Record<`${chrome.tabGroups.Color}`, string> = {
   grey: '#8a8a8e',
   blue: '#3b82f6',
   red: '#ef4444',

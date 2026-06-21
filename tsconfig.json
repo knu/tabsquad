@@ -6,7 +6,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "allowJs": false
+    "allowJs": false,
+    "types": ["chrome"]
   },
-  "exclude": ["node_modules", ".wxt", ".output", "dist", "eslint.config.js"]
+  "exclude": ["node_modules", ".output", "dist", "eslint.config.js"]
 }

@@ -93,7 +93,7 @@ export default defineBackground(() => {
       }
     }
 
-    let sameWindowGroups: chrome.tabGroups.TabGroup[] = [];
+    let sameWindowGroups: chrome.tabGroups.TabGroup[];
     try {
       sameWindowGroups = await chrome.tabGroups.query({ windowId: sourceTab.windowId });
     } catch {
@@ -149,7 +149,7 @@ export default defineBackground(() => {
     const groupId = tab.groupId ?? TAB_GROUP_ID_NONE;
     if (groupId !== TAB_GROUP_ID_NONE) return;
 
-    let sameWindowGroups: chrome.tabGroups.TabGroup[] = [];
+    let sameWindowGroups: chrome.tabGroups.TabGroup[];
     try {
       sameWindowGroups = await chrome.tabGroups.query({ windowId: tab.windowId });
     } catch {
