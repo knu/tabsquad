@@ -28,24 +28,24 @@
     "postinstall": "wxt prepare"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
-    "@eslint/js": "^9.18.0",
-    "@types/chrome": "^0.0.300",
-    "@types/react": "^19.0.0",
+    "@eslint/js": "^10.0.1",
+    "@types/chrome": "^0.1.43",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.20.0",
-    "@typescript-eslint/parser": "^8.20.0",
+    "@typescript-eslint/eslint-plugin": "^8.61.0",
+    "@typescript-eslint/parser": "^8.61.0",
     "@wxt-dev/module-react": "^1.2.2",
-    "eslint": "^9.18.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint": "^10.5.0",
+    "eslint-config-prettier": "^10.1.8",
     "git-cliff": "^2.13.1",
-    "prettier": "^3.4.2",
-    "sharp": "^0.34.5",
-    "typescript": "^5.7.3",
-    "wxt": "^0.20.25"
+    "prettier": "^3.8.4",
+    "sharp": "^0.35.1",
+    "typescript": "^6.0.3",
+    "wxt": "^0.20.26"
   },
   "packageManager": "pnpm@10.33.2",
   "engines": {

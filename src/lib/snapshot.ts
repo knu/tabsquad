@@ -138,7 +138,12 @@ export async function restoreSnapshot(snapshot: Snapshot, targetWindowId: number
         index: targetIndex,
       });
     }
-    await chrome.tabs.group({ groupId, tabIds: orderedTabIds });
+    // orderedTabIds is non-empty here (guarded above), which satisfies the
+    // [number, ...number[]] tuple type chrome.tabs.group now expects.
+    await chrome.tabs.group({
+      groupId,
+      tabIds: orderedTabIds as [number, ...number[]],
+    });
   }
 }
 
