@@ -1,10 +1,5 @@
 export type ActionKind =
-  | 'default'
-  | 'dismiss'
-  | 'groupTail'
-  | 'windowTail'
-  | 'nextWindowTail'
-  | 'targetGroup';
+  'default' | 'dismiss' | 'groupTail' | 'windowTail' | 'nextWindowTail' | 'targetGroup';
 
 export interface BaseAction {
   kind: ActionKind;

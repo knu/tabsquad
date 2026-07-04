@@ -1,10 +1,7 @@
 type Os = 'mac' | 'win' | 'linux' | 'other';
 
 const BROWSER = ((import.meta as { env?: { BROWSER?: string } }).env?.BROWSER ?? 'chrome') as
-  | 'chrome'
-  | 'edge'
-  | 'firefox'
-  | string;
+  'chrome' | 'edge' | 'firefox' | string;
 
 async function detectOs(): Promise<Os> {
   try {
