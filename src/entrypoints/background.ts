@@ -2,7 +2,7 @@ import { defineBackground } from 'wxt/utils/define-background';
 import { findMatchingRule } from '../lib/match';
 import { applyUrlTransform, dispatch } from '../lib/router';
 import { loadSettings, onSettingsChanged } from '../lib/storage';
-import { DEFAULT_SETTINGS, Settings } from '../lib/types';
+import { DEFAULT_SETTINGS, type Settings } from '../lib/types';
 
 const TAB_GROUP_ID_NONE = -1;
 const RECENTLY_DISPATCHED_TTL_MS = 5_000;

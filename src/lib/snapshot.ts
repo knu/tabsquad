@@ -1,4 +1,4 @@
-import { Snapshot } from './types';
+import type { Snapshot } from './types';
 
 const TAB_GROUP_ID_NONE = -1;
 
@@ -30,9 +30,9 @@ export async function captureGroup(
   groupTitle: string,
 ): Promise<GroupSnapshot | null> {
   const groups = await chrome.tabGroups.query({ windowId, title: groupTitle });
-  if (groups.length === 0) return null;
   // If multiple groups share a title in the same window, take the first.
   const group = groups[0];
+  if (!group) return null;
   const tabs = await chrome.tabs.query({ windowId, groupId: group.id });
   tabs.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
   const urls = tabs.map((t) => t.url).filter(isCapturable);
@@ -131,9 +131,9 @@ export async function restoreSnapshot(snapshot: Snapshot, targetWindowId: number
       (a, b) => (a.index ?? 0) - (b.index ?? 0),
     )[0];
     const baseIndex = headTab?.index ?? -1;
-    for (let i = 0; i < orderedTabIds.length; i += 1) {
+    for (const [i, tabId] of orderedTabIds.entries()) {
       const targetIndex = baseIndex >= 0 ? baseIndex + i : -1;
-      await chrome.tabs.move(orderedTabIds[i], {
+      await chrome.tabs.move(tabId, {
         windowId: targetWindowId,
         index: targetIndex,
       });
