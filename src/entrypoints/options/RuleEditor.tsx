@@ -2,12 +2,12 @@ import { colorForGroupTitle } from '../../lib/colors';
 import { isUrlPatternValid } from '../../lib/match';
 import {
   ACTION_LABELS,
-  Action,
-  ActionKind,
+  type Action,
+  type ActionKind,
   DEFAULT_RULE_SOURCE_SCOPE,
-  Rule,
+  type Rule,
   RULE_SOURCE_SCOPE_LABELS,
-  RuleSourceScope,
+  type RuleSourceScope,
 } from '../../lib/types';
 
 interface Props {

@@ -1,5 +1,5 @@
 import { applyTemplate } from './template';
-import { Action, Rule } from './types';
+import type { Action, Rule } from './types';
 
 const TAB_GROUP_ID_NONE = -1;
 
@@ -165,9 +165,9 @@ async function pickNextNormalWindow(currentWindowId: number): Promise<number | u
   const normals = windows.filter((w) => w.id != null && w.type === 'normal');
   if (normals.length < 2) return undefined;
   const idx = normals.findIndex((w) => w.id === currentWindowId);
-  if (idx === -1) return normals[0].id ?? undefined;
+  if (idx === -1) return normals[0]?.id ?? undefined;
   const next = normals[(idx + 1) % normals.length];
-  return next.id ?? undefined;
+  return next?.id ?? undefined;
 }
 
 export type { Action };

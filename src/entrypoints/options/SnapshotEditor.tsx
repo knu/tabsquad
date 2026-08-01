@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { colorForGroupTitle } from '../../lib/colors';
-import { Snapshot } from '../../lib/types';
+import type { Snapshot } from '../../lib/types';
 
 interface Props {
   snapshot: Snapshot;
@@ -39,7 +39,7 @@ export function SnapshotEditor({
     const newIdx = idx + delta;
     if (newIdx < 0 || newIdx >= snapshot.urls.length) return;
     const next = snapshot.urls.slice();
-    [next[idx], next[newIdx]] = [next[newIdx], next[idx]];
+    [next[idx], next[newIdx]] = [next[newIdx]!, next[idx]!];
     onChange({ urls: next });
   };
 

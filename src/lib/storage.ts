@@ -1,4 +1,10 @@
-import { DEFAULT_SETTINGS, LegacyRewriteAction, Rule, Settings, Snapshot } from './types';
+import {
+  DEFAULT_SETTINGS,
+  type LegacyRewriteAction,
+  type Rule,
+  type Settings,
+  type Snapshot,
+} from './types';
 
 const SYNC_KEY = 'settings';
 const LOCAL_KEY = 'settings';

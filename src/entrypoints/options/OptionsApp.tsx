@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { defaultRewriteTemplate } from '../../lib/defaults';
 import { captureGroup, restoreSnapshot } from '../../lib/snapshot';
 import { loadSettings, normalizeRule, onSettingsChanged, saveSettings } from '../../lib/storage';
-import { DEFAULT_SETTINGS, Rule, Settings, Snapshot } from '../../lib/types';
+import { DEFAULT_SETTINGS, type Rule, type Settings, type Snapshot } from '../../lib/types';
 import { RuleEditor } from './RuleEditor';
 import { SnapshotEditor } from './SnapshotEditor';
 
@@ -75,7 +75,7 @@ export function OptionsApp() {
     const newIdx = idx + delta;
     if (newIdx < 0 || newIdx >= list.length) return;
     const next = list.slice();
-    [next[idx], next[newIdx]] = [next[newIdx], next[idx]];
+    [next[idx], next[newIdx]] = [next[newIdx]!, next[idx]!];
     void persist({ ...settings, [key]: next });
   };
 

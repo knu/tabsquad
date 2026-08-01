@@ -1,4 +1,4 @@
-import { DEFAULT_RULE_SOURCE_SCOPE, Rule } from './types';
+import { DEFAULT_RULE_SOURCE_SCOPE, type Rule } from './types';
 
 const TAB_GROUP_ID_NONE = -1;
 
