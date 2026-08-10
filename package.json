@@ -48,7 +48,7 @@
     "typescript": "npm:@typescript/typescript6@^6.0.2",
     "wxt": "^0.21.0"
   },
-  "packageManager": "pnpm@11.18.0",
+  "packageManager": "pnpm@11.20.0",
   "engines": {
     "node": ">=24"
   }
