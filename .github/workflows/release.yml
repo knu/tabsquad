@@ -60,11 +60,13 @@ jobs:
         run: pnpm zip
 
       - name: Generate release notes
-        env:
-          TAG: ${{ github.event.workflow_run.head_branch }}
         run: |
           set -euo pipefail
-          pnpm exec git-cliff --tag "$TAG" --unreleased --strip header --output .release-notes.md
+          pnpm exec git-cliff --current --strip header --output .release-notes.md
+          if ! grep -qE '^- ' .release-notes.md; then
+            echo "git-cliff produced no release note entries." >&2
+            exit 1
+          fi
           cat .release-notes.md
 
       - name: Create GitHub release with Chrome zip
