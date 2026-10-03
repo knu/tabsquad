@@ -1,23 +1,14 @@
 name: Lockfile maintenance
-on: # zizmor: ignore[dangerous-triggers] -- The reusable workflow validates requests and only updates through trusted dispatch.
+on:
   schedule:
     - cron: "0 0 * * 5" # Friday 09:00 JST
   workflow_dispatch:
-  issue_comment:
-    types:
-      - created
-  pull_request_target:
-    types:
-      - edited
 permissions:
   contents: read
-  actions: write
-  issues: write
-  pull-requests: read
   id-token: write
 jobs:
   maintenance:
-    uses: knu/lockfile-maintenance-action/.github/workflows/maintenance.yml@6c6460c8b2b16671181f10347795859d12d24f76 # main
+    uses: knu/lockfile-maintenance-action/.github/workflows/maintenance.yml@6a0d92ca835c48e8c97a226c7e55154b13eead80 # main
     with:
       auth: oidc
       files: /pnpm-lock.yaml
