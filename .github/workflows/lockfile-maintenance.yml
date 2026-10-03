@@ -8,7 +8,6 @@ permissions:
   id-token: write
 jobs:
   maintenance:
-    uses: knu/lockfile-maintenance-action/.github/workflows/maintenance.yml@6a0d92ca835c48e8c97a226c7e55154b13eead80 # main
+    uses: knu/lockfile-maintenance-action/.github/workflows/maintenance.yml@b25f71652280135d0af3ed9abee56849942c5624 # v2.0.0
     with:
-      auth: oidc
       files: /pnpm-lock.yaml
