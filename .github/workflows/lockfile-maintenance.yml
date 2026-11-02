@@ -8,6 +8,13 @@ permissions:
   id-token: write
 jobs:
   maintenance:
-    uses: knu/lockfile-maintenance-action/.github/workflows/maintenance.yml@3d087d142fbe60099a43d649279de30c02f94731 # v2.1.2
+    uses: knu/lockfile-maintenance-action/.github/workflows/maintenance.yml@bfe008c400f3507b5e60a6090038d5cfb72261c8 # v2.2.0
     with:
       files: /pnpm-lock.yaml
+
+  actions-lock:
+    uses: knu/lockfile-maintenance-action/.github/workflows/maintenance.yml@bfe008c400f3507b5e60a6090038d5cfb72261c8
+    with:
+      files: /.github/workflows/actions.lock
+      minimum-release-age: 7 days
+      branch: automation/actions-lock-maintenance
